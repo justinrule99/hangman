@@ -7,27 +7,34 @@ import java.awt.*;
 
 public class Hangman extends javax.swing.JFrame {
     boolean finished = false;
+    static int numDraw =0;
     /**
      * Creates new form Hangman
      */
     public Hangman() {
         initComponents();
         jLabel1.setVisible(false);
-        lblMsg1.setVisible(false);
         
         
-       
-        
+      
     }
-    @Override
-    public void paint(Graphics g){
-        getContentPane().setBackground(Color.WHITE); 
-        g.drawRect(0,0,100,60);
-        
-        
-        //sets background color of form
-    }
+    
 
+    public void paint(Graphics g){
+        super.paint(g);
+        //getContentPane().setBackground(Color.WHITE); 
+        g.setColor(Color.RED);
+        g.drawOval(200, 200, 50, 50);
+        //need to work on z index
+    }
+    
+    public void drawNext(){
+        if(numDraw==1){
+            
+        }
+    }
+    
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,7 +46,6 @@ public class Hangman extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         btnStart = new javax.swing.JButton();
-        lblMsg1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Frame 1");
@@ -55,8 +61,6 @@ public class Hangman extends javax.swing.JFrame {
             }
         });
 
-        lblMsg1.setText("The computer has chosen a word");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -65,10 +69,8 @@ public class Hangman extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblMsg1))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(btnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 544, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 188, Short.MAX_VALUE)
                         .addComponent(jLabel1))))
@@ -78,9 +80,7 @@ public class Hangman extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblMsg1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jLabel1))
         );
 
@@ -92,7 +92,7 @@ public class Hangman extends javax.swing.JFrame {
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
         String p1name = JOptionPane.showInputDialog(null, "Enter your name: ");
         jLabel1.setVisible(true);
-        lblMsg1.setVisible(true);
+        
         
         
         while(!finished){
@@ -105,7 +105,6 @@ public class Hangman extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnStartActionPerformed
-
 
     
   public static void getPos(String a){  //gets custom letter to check for
@@ -130,6 +129,8 @@ public class Hangman extends javax.swing.JFrame {
         
         if(numA==0){
             JOptionPane.showMessageDialog(null, "There is no "+ chA +" in the word. Try again", "Alert", 1);
+            numDraw++;
+            System.out.println(numDraw);
         }
         else
         {    
@@ -190,6 +191,5 @@ public class Hangman extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnStart;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel lblMsg1;
     // End of variables declaration//GEN-END:variables
 }
