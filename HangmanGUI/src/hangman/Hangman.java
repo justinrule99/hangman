@@ -13,16 +13,17 @@ public class Hangman extends javax.swing.JFrame {
      */
     public Hangman() {
         initComponents();
-        jLabel1.setVisible(false);
+        lblPic.setVisible(false);
         
         
       
     }
     
 
+    @Override
     public void paint(Graphics g){
         super.paint(g);
-        //getContentPane().setBackground(Color.WHITE); 
+        getContentPane().setBackground(Color.WHITE); 
         g.setColor(Color.RED);
         g.drawOval(200, 200, 50, 50);
         //need to work on z index
@@ -30,7 +31,7 @@ public class Hangman extends javax.swing.JFrame {
     
     public void drawNext(){
         if(numDraw==1){
-            
+            //Draw head
         }
     }
     
@@ -44,14 +45,16 @@ public class Hangman extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lblPic = new javax.swing.JLabel();
         btnStart = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Frame 1");
         setAutoRequestFocus(false);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Justin\\Documents\\GitHub\\hangman\\HangmanGUI\\src\\base.png")); // NOI18N
+        lblPic.setBackground(new java.awt.Color(255, 255, 255));
+        lblPic.setIcon(new javax.swing.ImageIcon("C:\\Users\\Justin\\Documents\\GitHub\\hangman\\HangmanGUI\\src\\base.png")); // NOI18N
+        lblPic.setName(""); // NOI18N
 
         btnStart.setFont(new java.awt.Font("Arial Unicode MS", 1, 24)); // NOI18N
         btnStart.setText("Start");
@@ -73,7 +76,7 @@ public class Hangman extends javax.swing.JFrame {
                         .addGap(0, 544, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 188, Short.MAX_VALUE)
-                        .addComponent(jLabel1))))
+                        .addComponent(lblPic))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -81,7 +84,7 @@ public class Hangman extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(jLabel1))
+                .addComponent(lblPic))
         );
 
         getAccessibleContext().setAccessibleName("frame1");
@@ -91,7 +94,7 @@ public class Hangman extends javax.swing.JFrame {
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
         String p1name = JOptionPane.showInputDialog(null, "Enter your name: ");
-        jLabel1.setVisible(true);
+        lblPic.setVisible(true);
         
         
         
@@ -190,6 +193,6 @@ public class Hangman extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnStart;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblPic;
     // End of variables declaration//GEN-END:variables
 }
