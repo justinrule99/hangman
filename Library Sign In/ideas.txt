@@ -1,0 +1,12 @@
+Ideas for Library sign in program
+
+Features:
+	Student Sign in and out (Write to file)
+	Create report for admins to see
+	Date and period display
+	Admin password and settings	WORKS	
+	Master start/stop in settings
+
+How to make:
+	Swing, designer
+	
