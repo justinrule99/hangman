@@ -20,8 +20,7 @@ public class PanelClass extends JPanel{
         g.setColor(Color.red);
         //use images and jpanels for all stages of hangman, cant run different paintcomponents
         
-        ImageIcon i = new ImageIcon("C:\\Users\\Justin\\Desktop\base.png");
-        i.paintIcon(this, g, 40, 50);
+       
         
         
     }
