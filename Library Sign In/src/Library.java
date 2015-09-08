@@ -35,8 +35,11 @@ public class Library extends javax.swing.JFrame {
         lblDate = new javax.swing.JLabel();
         lblSignIn = new javax.swing.JButton();
         lblPrd = new javax.swing.JLabel();
+        lblPicL = new javax.swing.JLabel();
+        lblPicR = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 51));
 
         lblHeader.setFont(new java.awt.Font("Quartz", 1, 48)); // NOI18N
         lblHeader.setText("ELKHORN SOUTH LIBRARY SIGN IN");
@@ -71,31 +74,43 @@ public class Library extends javax.swing.JFrame {
         lblPrd.setFont(new java.awt.Font("Quartz", 1, 24)); // NOI18N
         lblPrd.setText("Period _ Ends in _ minutes");
 
+        lblPicL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/eshs.png"))); // NOI18N
+
+        lblPicR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/storm.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(495, 495, 495)
-                .addComponent(lblTime)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(122, Short.MAX_VALUE)
+                .addContainerGap(41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblDate)
-                                .addGap(436, 436, 436))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblHeader)
                                 .addGap(90, 90, 90)
-                                .addComponent(btnSettings, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnSettings, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblDate)
+                                        .addGap(182, 182, 182))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblTime)
+                                        .addGap(198, 198, 198)))
+                                .addComponent(lblPicR)
+                                .addGap(86, 86, 86)))
                         .addGap(38, 38, 38))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblPrd)
-                            .addComponent(lblSignIn, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblPicL, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(48, 48, 48)
+                                .addComponent(lblSignIn, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(82, 82, 82)
+                                .addComponent(lblPrd)))
                         .addGap(368, 368, 368))))
         );
         layout.setVerticalGroup(
@@ -105,15 +120,23 @@ public class Library extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSettings, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblHeader))
-                .addGap(18, 18, 18)
-                .addComponent(lblDate)
-                .addGap(16, 16, 16)
-                .addComponent(lblTime)
-                .addGap(18, 18, 18)
-                .addComponent(lblSignIn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblPrd)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(lblDate)
+                        .addGap(13, 13, 13)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblTime)
+                                .addGap(38, 38, 38)
+                                .addComponent(lblSignIn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addComponent(lblPrd))
+                            .addComponent(lblPicL, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(lblPicR)))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
@@ -134,11 +157,11 @@ public class Library extends javax.swing.JFrame {
     private void lblSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblSignInActionPerformed
         studentName = JOptionPane.showInputDialog(null, "Enter your name");
         Date date = new Date();
-        File file = new File("report.txt");
+        File file = new File("90815.txt");
         PrintWriter writer;
         try {
             writer = new PrintWriter(new FileWriter(file, true)); 
-            writer.println(studentName+"     Date: "+ date);
+            writer.println(studentName+"      "+ date);
             writer.close();
         } catch (IOException ex) {
             Logger.getLogger(Library.class.getName()).log(Level.SEVERE, null, ex);
@@ -146,6 +169,12 @@ public class Library extends javax.swing.JFrame {
         
     }//GEN-LAST:event_lblSignInActionPerformed
 
+    
+    public static void createNewFile(){
+        //if file doesnt exist for current day, make new file
+    }
+    
+    
     public static boolean fileHasPW() throws FileNotFoundException, IOException{
         
         BufferedReader br = new BufferedReader(new FileReader(fileName));
@@ -221,6 +250,11 @@ public class Library extends javax.swing.JFrame {
                             int month = monthA + 1;
                             int year = cal.get(Calendar.YEAR);
 
+                            String sMonth = Integer.toString(month);
+                            String sDay = Integer.toString(day);
+                            String sYear = Integer.toString(year);
+                            String mdy = sMonth + sDay + sYear;
+                            //must check if file with name mdy exists
                             int hour = cal.get(Calendar.HOUR);
                             int minute = cal.get(Calendar.MINUTE);
                             int second = cal.get(Calendar.SECOND);
@@ -279,6 +313,8 @@ public class Library extends javax.swing.JFrame {
     private javax.swing.JButton btnSettings;
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblHeader;
+    private javax.swing.JLabel lblPicL;
+    private javax.swing.JLabel lblPicR;
     private javax.swing.JLabel lblPrd;
     private javax.swing.JButton lblSignIn;
     private javax.swing.JLabel lblTime;

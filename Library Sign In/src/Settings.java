@@ -77,7 +77,7 @@ public class Settings extends javax.swing.JFrame {
 
     private void btnSeeReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeeReportActionPerformed
         Runtime rt = Runtime.getRuntime();
-        String file = "report.txt";
+        String file = "90815.txt";
         try {
             Process p = rt.exec("notepad "+file);
         } catch (IOException ex) {

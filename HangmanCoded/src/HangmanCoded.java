@@ -19,8 +19,8 @@ public class HangmanCoded extends javax.swing.JPanel{
         frame.setTitle("Handddgman");
         lblPic.setLocation(300,300);
         lblPic.setSize(200,200);
-        lblPic.setBackground(new java.awt.Color(255, 255, 255));
-        lblPic.setIcon(new javax.swing.ImageIcon("C:\\Users\\Justin\\Documents\\GitHub\\hangman\\HangmanGUI\\src\\base.png"));
+        lblPic.setBackground(new Color(25, 5, 255));
+        lblPic.setIcon(new ImageIcon("base.png"));
         frame.add(lblPic);
         
       
