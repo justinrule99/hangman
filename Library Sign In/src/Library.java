@@ -14,6 +14,8 @@ public class Library extends javax.swing.JFrame {
     static String fileName = "passwod.txt";
     static String ideasName = "ideas.txt";
     static String studentName;
+    public static String mdy;
+    int hourmin;
     
     public Library() {
         initComponents();
@@ -22,6 +24,7 @@ public class Library extends javax.swing.JFrame {
         //System.out.println(day);
         //System.out.println(minute);
         clock();
+        System.out.println(hourmin);
     }
 
 
@@ -151,13 +154,13 @@ public class Library extends javax.swing.JFrame {
         File file = new File(fileName);
         long fLength = file.length();
         System.out.println(file.length());
-        
+        System.out.println(mdy);
     }//GEN-LAST:event_btnSettingsActionPerformed
 
     private void lblSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblSignInActionPerformed
         studentName = JOptionPane.showInputDialog(null, "Enter your name");
         Date date = new Date();
-        File file = new File("90815.txt");
+        File file = new File("982015.txt");
         PrintWriter writer;
         try {
             writer = new PrintWriter(new FileWriter(file, true)); 
@@ -166,15 +169,10 @@ public class Library extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Library.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+         System.out.println(hourmin);
     }//GEN-LAST:event_lblSignInActionPerformed
 
-    
-    public static void createNewFile(){
-        //if file doesnt exist for current day, make new file
-    }
-    
-    
+        
     public static boolean fileHasPW() throws FileNotFoundException, IOException{
         
         BufferedReader br = new BufferedReader(new FileReader(fileName));
@@ -218,7 +216,8 @@ public class Library extends javax.swing.JFrame {
                 }
             }
             else
-                JOptionPane.showMessageDialog(null, "Access Denied");
+                JOptionPane.showMessageDialog(null, "A"
+                        + "Access Denied");
         }
     }
     
@@ -237,6 +236,10 @@ public class Library extends javax.swing.JFrame {
         
     }
     
+    public void setTimeLeft(int hMin){
+        //might not use this method
+    }
+    
     public void clock(){
         //uses thread to show current time and date
         Thread clock = new Thread(){
@@ -253,18 +256,59 @@ public class Library extends javax.swing.JFrame {
                             String sMonth = Integer.toString(month);
                             String sDay = Integer.toString(day);
                             String sYear = Integer.toString(year);
-                            String mdy = sMonth + sDay + sYear;
+                            mdy = sMonth + sDay + sYear;
                             //must check if file with name mdy exists
                             int hour = cal.get(Calendar.HOUR);
                             int minute = cal.get(Calendar.MINUTE);
                             int second = cal.get(Calendar.SECOND);
+                            String sHour = Integer.toString(hour);
+                            String sMinute = Integer.toString(minute);
+                            String sHourmin = sHour + sMinute;
+                            hourmin = Integer.parseInt(sHourmin);//11:04 shows as 114
+                            if(hourmin>110 && hourmin<=119 && hour==11){
+                                hourmin = 1100 + minute;//if in 3rd hour
+                            }
+                            if(hourmin>90 && hourmin<99 && hour==9){
+                                hourmin = 900 + minute;
+                            }
+                            
+                            System.out.println(hourmin);
+                            
                             
                             int minsleft = 0;
                             lblDate.setText(month + "/" + day + "/" + year);
                             lblTime.setText(hour + ":" + minute + ":" + second);
-                            if(hour==8 && minute>9 && minute<=59){
+                            if(hourmin>=810 && hourmin <=859){
                                minsleft = 60-minute;
                                lblPrd.setText("Period 1 ends in " + minsleft + " minutes");
+                            }
+                            if(hourmin>=903 && hourmin<=923){
+                                minsleft = 923-hourmin;
+                                lblPrd.setText("TA ends in " + minsleft + " minutes");
+                            }
+                            if(hourmin>=927 && hourmin<=1017){
+                                minsleft = 1017-hourmin;
+                                lblPrd.setText("Period 2 ends in " + minsleft + " minutes");
+                            }
+                            if(hourmin>=1021 && hourmin<=1111){
+                                minsleft = 1111-hourmin-40;
+                                lblPrd.setText("Period 3 ends in " + minsleft + " minutes");
+                            }
+                            if(hourmin>=1115 && hourmin<=1238){
+                                minsleft = 1238-hourmin;
+                                lblPrd.setText("Period 4 ends in " + minsleft + " minutes");
+                            }
+                            if(hourmin>=1242 && hourmin<=132){
+                                minsleft = 132-hourmin;
+                                lblPrd.setText("Period 5 ends in " + minsleft + " minutes");
+                            }
+                            if(hourmin>=136 && hourmin<=226){
+                                minsleft = 226-hourmin;
+                                lblPrd.setText("Period 6 ends in " + minsleft + " minutes");
+                            }
+                            if(hourmin>=230 && hourmin<=320){
+                                minsleft = 320-hourmin;
+                                lblPrd.setText("Period 7 ends in " + minsleft + " minutes");
                             }
                             sleep(1000);
                         }
