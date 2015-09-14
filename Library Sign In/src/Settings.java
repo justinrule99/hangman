@@ -1,8 +1,12 @@
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.io.IOException;
-import static java.lang.System.load;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 
 public class Settings extends javax.swing.JFrame {
@@ -89,20 +93,45 @@ public class Settings extends javax.swing.JFrame {
     }//GEN-LAST:event_btnChgPWActionPerformed
 
     private void btnSeeReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeeReportActionPerformed
-        Runtime rt = Runtime.getRuntime();
-        String file = "982015.txt";
-        try {
-            Process p = rt.exec("notepad "+file);
-        } catch (IOException ex) {
-            Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
+        JPanel mainPanel = new JPanel();
+        mainPanel.setSize(300,300);
+        mainPanel.setBackground(Color.RED);
+        JFrame showReports = new JFrame();
+        showReports.setSize(400,400);
+        showReports.setVisible(true);
+        showReports.setTitle("View Sign In Reports");
+        JButton btnShow = new JButton("Hi");
+        //btnShow.setPreferredSize(new Dimension(100, 100));
+        btnShow.setLayout(null);
+        btnShow.setBounds(100,100,200,200);
+        
+        JButton btnShow2 = new JButton("Hdi");
+        //btnShow.setPreferredSize(new Dimension(100, 100));
+        btnShow2.setLayout(null);
+        btnShow2.setBounds(100,100,200,200);
+        for (int i = 0; i <32; i++) {
+            JButton btn = new JButton("btn"+i);
+            mainPanel.add(btn);
+            
         }
+        //mainPanel.add(btnShow);
+        //mainPanel.add(btnShow2);
+        showReports.add(mainPanel);
     }//GEN-LAST:event_btnSeeReportActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         //bring list of dates, probably new form to delete certain files
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-
+    public void openFile(String name){
+        Runtime rt = Runtime.getRuntime();
+        String file = name;
+        try {
+            Process p = rt.exec("notepad "+file);
+        } catch (IOException ex) {
+            Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

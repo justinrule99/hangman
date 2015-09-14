@@ -161,15 +161,39 @@ public class Library extends javax.swing.JFrame {
         studentName = JOptionPane.showInputDialog(null, "Enter your name");
         Date date = new Date();
         File file = new File("982015.txt");
-        PrintWriter writer;
-        try {
-            writer = new PrintWriter(new FileWriter(file, true)); 
-            writer.println(studentName+"      "+ date);
-            writer.close();
-        } catch (IOException ex) {
+
+        //check if current date's file exists, if not: create new one and write to it
+        String todaysDate = mdy;
+        String fileNam = todaysDate + ".txt";
+        File f = new File(fileNam);
+        if(f.exists()){
+            //write to that file
+             PrintWriter writer;
+             try {
+                writer = new PrintWriter(new FileWriter(f, true)); 
+                if(studentName==null){
+                }
+                else{
+                   writer.println(studentName+"      "+ date);
+                }
+                writer.close();
+            }catch (IOException ex) {
             Logger.getLogger(Library.class.getName()).log(Level.SEVERE, null, ex);
         }
-         System.out.println(hourmin);
+        }
+        else if(!f.exists()){
+            try {
+                //create file with that name, then write to it
+                PrintWriter newFile = new PrintWriter(fileNam, "UTF-8");
+                newFile.println(studentName+"       "+date);
+                newFile.close();
+                
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Library.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (UnsupportedEncodingException ex) {
+                Logger.getLogger(Library.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_lblSignInActionPerformed
 
         
@@ -271,6 +295,10 @@ public class Library extends javax.swing.JFrame {
                             if(hourmin>90 && hourmin<99 && hour==9){
                                 hourmin = 900 + minute;
                             }
+                            if(hourmin>=0 && hourmin<=59){
+                                hourmin = 1200 + minute;
+                            }
+                            
                             
                             System.out.println(hourmin);
                             
@@ -278,36 +306,62 @@ public class Library extends javax.swing.JFrame {
                             int minsleft = 0;
                             lblDate.setText(month + "/" + day + "/" + year);
                             lblTime.setText(hour + ":" + minute + ":" + second);
-                            if(hourmin>=810 && hourmin <=859){
+                            if(hourmin>=810 && hourmin <=859){//1
                                minsleft = 60-minute;
                                lblPrd.setText("Period 1 ends in " + minsleft + " minutes");
                             }
-                            if(hourmin>=903 && hourmin<=923){
+                            if(hourmin>=903 && hourmin<=923){//TA
                                 minsleft = 923-hourmin;
                                 lblPrd.setText("TA ends in " + minsleft + " minutes");
                             }
-                            if(hourmin>=927 && hourmin<=1017){
-                                minsleft = 1017-hourmin;
+                            if(hourmin>=927 && hourmin<=1017){//2
+                                if(hourmin<1000){
+                                    minsleft = 1017-hourmin-40;
+                                }
+                                else{
+                                    minsleft = 1017-hourmin;
+                                }
                                 lblPrd.setText("Period 2 ends in " + minsleft + " minutes");
                             }
-                            if(hourmin>=1021 && hourmin<=1111){
-                                minsleft = 1111-hourmin-40;
+                            if(hourmin>=1021 && hourmin<=1111){//3
+                                if(hourmin>1100 && hourmin<=1109 && hour==11){
+                                    minsleft = 1111-hourmin;
+                                }
+                                else{
+                                    minsleft = 1111-hourmin-40;
+                                }
                                 lblPrd.setText("Period 3 ends in " + minsleft + " minutes");
                             }
-                            if(hourmin>=1115 && hourmin<=1238){
+                            if(hourmin>=1115 && hourmin<=1238){//4
                                 minsleft = 1238-hourmin;
                                 lblPrd.setText("Period 4 ends in " + minsleft + " minutes");
                             }
-                            if(hourmin>=1242 && hourmin<=132){
-                                minsleft = 132-hourmin;
+                            if(hourmin>=1242 || hourmin<=132){//5
+                                if(hourmin>1241){
+                                    minsleft = 1332-hourmin-40;
+                                }
+                                else{
+                                    minsleft = 132-hourmin;
+                                }
                                 lblPrd.setText("Period 5 ends in " + minsleft + " minutes");
                             }
-                            if(hourmin>=136 && hourmin<=226){
-                                minsleft = 226-hourmin;
+                            if(hourmin>=136 && hourmin<=226){//6
+                                if(hourmin<200){
+                                    minsleft = 226-hourmin-40;
+                                }
+                                else{
+                                    minsleft = 226-hourmin;
+                                }
                                 lblPrd.setText("Period 6 ends in " + minsleft + " minutes");
                             }
-                            if(hourmin>=230 && hourmin<=320){
-                                minsleft = 320-hourmin;
+                            if(hourmin>=230 && hourmin<=320){//7
+                                if(hourmin<300){
+                                    minsleft = 320-hourmin-40;
+                                }
+                                else{
+                                    minsleft = 320-hourmin;
+                                }
+                                
                                 lblPrd.setText("Period 7 ends in " + minsleft + " minutes");
                             }
                             sleep(1000);
