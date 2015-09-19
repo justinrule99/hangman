@@ -322,7 +322,7 @@ public class Library extends javax.swing.JFrame {
                                     minsleft = 1017-hourmin;
                                 }
                                 lblPrd.setText("Period 2 ends in " + minsleft + " minutes");
-                            }
+                            }//capt howdy98 twitch
                             if(hourmin>=1021 && hourmin<=1111){//3
                                 if(hourmin>1100 && hourmin<=1109 && hour==11){
                                     minsleft = 1111-hourmin;

@@ -108,9 +108,13 @@ public class Settings extends javax.swing.JFrame {
         JButton btnShow2 = new JButton("Hdi");
         //btnShow.setPreferredSize(new Dimension(100, 100));
         btnShow2.setLayout(null);
+        
         btnShow2.setBounds(100,100,200,200);
         for (int i = 0; i <32; i++) {
             JButton btn = new JButton("btn"+i);
+            btn.setBackground(Color.green);
+            
+            btn.setHorizontalAlignment(JButton.RIGHT);
             mainPanel.add(btn);
             
         }
