@@ -15,7 +15,9 @@ public class Library extends javax.swing.JFrame {
     static String ideasName = "ideas.txt";
     static String studentName;
     public static String mdy;
+    public static String fmdy;
     int hourmin;
+    public static String fhourmin;
     
     public Library() {
         initComponents();
@@ -174,7 +176,7 @@ public class Library extends javax.swing.JFrame {
                 if(studentName==null){
                 }
                 else{
-                   writer.println(studentName+"      "+ date);
+                   writer.println(fmdy+" "+fhourmin+"    "+ studentName);
                 }
                 writer.close();
             }catch (IOException ex) {
@@ -185,7 +187,7 @@ public class Library extends javax.swing.JFrame {
             try {
                 //create file with that name, then write to it
                 PrintWriter newFile = new PrintWriter(fileNam, "UTF-8");
-                newFile.println(studentName+"       "+date);
+                newFile.println(fmdy+"  "+fhourmin+"       "+studentName);
                 newFile.close();
                 
             } catch (FileNotFoundException ex) {
@@ -201,9 +203,7 @@ public class Library extends javax.swing.JFrame {
         
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         if(br.readLine()!=null){
-            
             return true;
-            
         }
         else
             return false;
@@ -281,6 +281,7 @@ public class Library extends javax.swing.JFrame {
                             String sDay = Integer.toString(day);
                             String sYear = Integer.toString(year);
                             mdy = sMonth + sDay + sYear;
+                            fmdy = sMonth+"/"+sDay+"/"+sYear;
                             //must check if file with name mdy exists
                             int hour = cal.get(Calendar.HOUR);
                             int minute = cal.get(Calendar.MINUTE);
@@ -288,6 +289,7 @@ public class Library extends javax.swing.JFrame {
                             String sHour = Integer.toString(hour);
                             String sMinute = Integer.toString(minute);
                             String sHourmin = sHour + sMinute;
+                            fhourmin = sHour+":"+sMinute;
                             hourmin = Integer.parseInt(sHourmin);//11:04 shows as 114
                             if(hourmin>110 && hourmin<=119 && hour==11){
                                 hourmin = 1100 + minute;//if in 3rd hour
@@ -300,7 +302,7 @@ public class Library extends javax.swing.JFrame {
                             }
                             
                             
-                            System.out.println(hourmin);
+                            //System.out.println(hourmin);
                             
                             
                             int minsleft = 0;
@@ -323,6 +325,7 @@ public class Library extends javax.swing.JFrame {
                                 }
                                 lblPrd.setText("Period 2 ends in " + minsleft + " minutes");
                             }//capt howdy98 twitch
+                            //10:04 shows as 104, read as in 5th hour
                             if(hourmin>=1021 && hourmin<=1111){//3
                                 if(hourmin>1100 && hourmin<=1109 && hour==11){
                                     minsleft = 1111-hourmin;
