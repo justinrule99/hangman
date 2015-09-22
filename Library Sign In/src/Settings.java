@@ -284,7 +284,7 @@ public class Settings extends javax.swing.JFrame {
             }
         });
     }
-
+    //the library didnt transfer
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChgPW;
     private javax.swing.JButton btnDatePick;
