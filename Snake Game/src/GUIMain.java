@@ -1,6 +1,6 @@
 
 import javax.swing.JOptionPane;
-
+//here is a comment to see if netbeans git works
 
 public class GUIMain extends javax.swing.JFrame {
 
