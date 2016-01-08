@@ -88,6 +88,36 @@ public class PaintGraph extends JPanel{
         }   
     }
     
+    public String findVertex(int c, int d, int e){
+        double xVert = (-1*d)/(2*c);
+        double yVert = (Math.pow(xVert, 2)*c)+(d*xVert)+e;
+        String vertex = "( "+xVert+" , "+yVert+" )";
+        return vertex;
+    }
+    
+    public String findMin(int a, int b, int c, int d, int e){
+        double xMin = 0;
+        double yMin = 0;
+        String min = null; //= "( "+xMin+" , "+yMin+" )";
+        boolean canFindMin = false;
+        
+        if(deg==2){
+            if(c>0){
+                
+                
+                canFindMin = true;
+            }
+        }
+        
+        if(canFindMin){
+            return min;
+        }
+        else{
+            return("There is no Minimum!");
+        }
+        
+    }
+    
     public double findPointX(int a,int b, int c, int d, int e, double i, boolean isPositive){
         if (!isPositive) {
             double ptX = i;
