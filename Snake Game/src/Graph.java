@@ -15,7 +15,7 @@ public class Graph extends JFrame{
             jGraph.setSize(400,400);
             jGraph.setLocation(700,400);
             //jGraph.setDefaultCloseOperation(EXIT_ON_CLOSE);
-            jGraph.setResizable(false);
+            jGraph.setResizable(true);
             jGraph.setTitle("Graph");
             PaintGraph pg = new PaintGraph();
             jGraph.add(pg);

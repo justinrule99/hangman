@@ -12,7 +12,7 @@ public class PaintGraph extends JPanel{
     int b = GUIMain.xCubed;
     int c = GUIMain.xSquared;
     int d = GUIMain.x;
-    int e = GUIMain.constant;
+    double e = GUIMain.constant;
     int deg = GUIMain.degrees;
     
     @Override
@@ -70,16 +70,18 @@ public class PaintGraph extends JPanel{
                 
         }
         g3.setColor(Color.RED); //color of axes
-        g.drawLine(200,0,200,400);
-        g.drawLine(0,200,400,200);
-        for(int i=0;i<20;i++){
+        g.drawLine(200,0,200,1400);
+        g.drawLine(0,200,1400,200);
+        //draw lines on x axis
+        for(int i=0;i<100;i++){
             int x1 = (20*i);
             int y1 = 205;
             int x2 = x1;
             int y2 = 195;
             g.drawLine(x1,y1,x2,y2);
         }
-        for(int i=0;i<20;i++){
+        //draw lines on y axis
+        for(int i=0;i<100;i++){
             int x1 = 195;
             int y1 = 20*i;
             int x2 = 205;
@@ -88,7 +90,7 @@ public class PaintGraph extends JPanel{
         }   
     }
     
-    public String findVertex(int c, int d, int e){
+    public String findVertex(int c, int d, double e){
         double xVert = (-1*d)/(2*c);
         double yVert = (Math.pow(xVert, 2)*c)+(d*xVert)+e;
         String vertex = "( "+xVert+" , "+yVert+" )";
@@ -118,7 +120,7 @@ public class PaintGraph extends JPanel{
         
     }
     
-    public double findPointX(int a,int b, int c, int d, int e, double i, boolean isPositive){
+    public double findPointX(int a,int b, int c, int d, double e, double i, boolean isPositive){
         if (!isPositive) {
             double ptX = i;
             double graphPTX = 200 - (ptX * 20);
@@ -133,7 +135,7 @@ public class PaintGraph extends JPanel{
         }
     }
     
-    public double findPointY(int a,int b, int c, int d, int e, double i, boolean isPositive, boolean isCurve){
+    public double findPointY(int a,int b, int c, int d, double e, double i, boolean isPositive, boolean isCurve){
         if (!isPositive) {
             double negi = i * -1;
             double ptY;

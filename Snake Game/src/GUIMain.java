@@ -15,7 +15,7 @@ public class GUIMain extends javax.swing.JFrame {
     static int xCubed;
     static int xSquared;
     static int x;
-    static int constant;
+    static double constant;
     static String grType;
     
     
@@ -93,7 +93,7 @@ public class GUIMain extends javax.swing.JFrame {
         degrees = (int) jSpinner1.getValue();
         if(degrees==0){
             strConst = JOptionPane.showInputDialog("Constant: ",null);
-            constant = Integer.parseInt(strConst);
+            constant = Double.parseDouble(strConst);
             grType = "Horizontal Line";
         } 
         else if(degrees==1){
