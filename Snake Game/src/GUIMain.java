@@ -11,16 +11,17 @@ public class GUIMain extends javax.swing.JFrame {
     String strConst;
     String polynomial;
     static int degrees;
-    static int xFourth;
-    static int xCubed;
-    static int xSquared;
-    static int x;
+    static double xFourth;
+    static double xCubed;
+    static double xSquared;
+    static double x;
     static double constant;
     static String grType;
     
     
     public GUIMain() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -99,17 +100,17 @@ public class GUIMain extends javax.swing.JFrame {
         else if(degrees==1){
             strX = JOptionPane.showInputDialog("x Coefficient: ",null);
             strConst = JOptionPane.showInputDialog("Constant: ",null);
-            x = Integer.parseInt(strX);
-            constant = Integer.parseInt(strConst);
+            x = Double.parseDouble(strX);
+            constant = Double.parseDouble(strConst);
             grType = "Line";
         }
         else if(degrees==2){
             strX2 = JOptionPane.showInputDialog("x^2 Coefficient: ",null);
             strX = JOptionPane.showInputDialog("x Coefficient: ",null);
             strConst = JOptionPane.showInputDialog("Constant: ",null);
-            xSquared = Integer.parseInt(strX2);
-            x = Integer.parseInt(strX);
-            constant = Integer.parseInt(strConst);
+            xSquared = Double.parseDouble(strX2);
+            x = Double.parseDouble(strX);
+            constant = Double.parseDouble(strConst);
             grType = "Parabola";
         }
         else if(degrees==3){
@@ -117,10 +118,10 @@ public class GUIMain extends javax.swing.JFrame {
             strX2 = JOptionPane.showInputDialog("x^2 Coefficient: ",null);
             strX = JOptionPane.showInputDialog("x Coefficient: ",null);
             strConst = JOptionPane.showInputDialog("Constant: ",null);
-            xCubed = Integer.parseInt(strX3);
-            xSquared = Integer.parseInt(strX2);
-            x = Integer.parseInt(strX);
-            constant = Integer.parseInt(strConst);
+            xCubed = Double.parseDouble(strX3);
+            xSquared = Double.parseDouble(strX2);
+            x = Double.parseDouble(strX);
+            constant = Double.parseDouble(strConst);
             grType = "Cubic (x^3)";
             
         }
@@ -130,11 +131,11 @@ public class GUIMain extends javax.swing.JFrame {
             strX2 = JOptionPane.showInputDialog("x^2 Coefficient: ",null);
             strX = JOptionPane.showInputDialog("x Coefficient: ",null);
             strConst = JOptionPane.showInputDialog("Constant: ",null);
-            xFourth = Integer.parseInt(strX4);
-            xCubed = Integer.parseInt(strX3);
-            xSquared = Integer.parseInt(strX2);
-            x = Integer.parseInt(strX);
-            constant = Integer.parseInt(strConst);
+            xFourth = Double.parseDouble(strX4);
+            xCubed = Double.parseDouble(strX3);
+            xSquared = Double.parseDouble(strX2);
+            x = Double.parseDouble(strX);
+            constant = Double.parseDouble(strConst);
             grType = ("Quartic (x^4)");
         }
         Graph gr = new Graph();

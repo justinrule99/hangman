@@ -5,13 +5,17 @@ public class OptionsPanel extends javax.swing.JFrame {
      * Creates new form OptionsPanel
      */
     PaintGraph pg = new PaintGraph();
+    String vertex;
     
     public OptionsPanel() {
         initComponents();
         if(GUIMain.degrees!=2){
             btnVertex.setEnabled(false);
+            btnMax.setEnabled(false);
+            btnMin.setEnabled(false);
         }
         jLabel1.setText("Graph Type: "+GUIMain.grType);
+        vertex = pg.findVertex(GUIMain.xSquared, GUIMain.x, GUIMain.constant);
     }
 
     @SuppressWarnings("unchecked")
@@ -21,6 +25,10 @@ public class OptionsPanel extends javax.swing.JFrame {
         btnVertex = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnMin = new javax.swing.JButton();
+        lblVertex = new javax.swing.JLabel();
+        btnMax = new javax.swing.JButton();
+        lblMin = new javax.swing.JLabel();
+        lblMax = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,6 +51,20 @@ public class OptionsPanel extends javax.swing.JFrame {
             }
         });
 
+        lblVertex.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        btnMax.setText("Max");
+        btnMax.setActionCommand("btnMin");
+        btnMax.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMaxActionPerformed(evt);
+            }
+        });
+
+        lblMin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        lblMax.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -55,9 +77,16 @@ public class OptionsPanel extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnMin)
-                            .addComponent(btnVertex))))
-                .addContainerGap(164, Short.MAX_VALUE))
+                            .addComponent(btnVertex)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(btnMin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnMax, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(43, 43, 43)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblVertex, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblMax, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                            .addComponent(lblMin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -65,24 +94,47 @@ public class OptionsPanel extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
-                .addComponent(btnVertex)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblVertex, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVertex, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnMin)
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnMin)
+                    .addComponent(lblMin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnMax, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblMax, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVertexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVertexActionPerformed
-
-        System.out.println(pg.findVertex(GUIMain.xSquared, GUIMain.x, GUIMain.constant));
+        
+        System.out.println(vertex);
+        lblVertex.setText(vertex);
     }//GEN-LAST:event_btnVertexActionPerformed
 
     private void btnMinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinActionPerformed
+        if(GUIMain.xSquared>0){
+            lblMin.setText(vertex); //vertex is the same as minimum
+        }
+        else{
+            lblMin.setText("There is no minimum");
+        }
         
-        //System.out.println(pg.findMin());
     }//GEN-LAST:event_btnMinActionPerformed
+
+    private void btnMaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaxActionPerformed
+        if(GUIMain.xSquared<0){
+            lblMax.setText(vertex); //vertex is the same as max
+        }
+        else{
+            lblMax.setText("There is no maximum");
+        }
+    }//GEN-LAST:event_btnMaxActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -117,8 +169,12 @@ public class OptionsPanel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMax;
     private javax.swing.JButton btnMin;
     private javax.swing.JButton btnVertex;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblMax;
+    private javax.swing.JLabel lblMin;
+    private javax.swing.JLabel lblVertex;
     // End of variables declaration//GEN-END:variables
 }

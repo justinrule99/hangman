@@ -8,10 +8,10 @@ import javax.swing.JPanel;
 
 
 public class PaintGraph extends JPanel{
-    int a = GUIMain.xFourth;
-    int b = GUIMain.xCubed;
-    int c = GUIMain.xSquared;
-    int d = GUIMain.x;
+    double a = GUIMain.xFourth;
+    double b = GUIMain.xCubed;
+    double c = GUIMain.xSquared;
+    double d = GUIMain.x;
     double e = GUIMain.constant;
     int deg = GUIMain.degrees;
     
@@ -90,28 +90,25 @@ public class PaintGraph extends JPanel{
         }   
     }
     
-    public String findVertex(int c, int d, double e){
+    public String findVertex(double c, double d, double e){
         double xVert = (-1*d)/(2*c);
         double yVert = (Math.pow(xVert, 2)*c)+(d*xVert)+e;
         String vertex = "( "+xVert+" , "+yVert+" )";
         return vertex;
     }
     
-    public String findMin(int a, int b, int c, int d, int e){
-        double xMin = 0;
-        double yMin = 0;
-        String min = null; //= "( "+xMin+" , "+yMin+" )";
+    public String findMin(double c, double d, double e){
+        String min; //= "( "+xMin+" , "+yMin+" )";
         boolean canFindMin = false;
         
         if(deg==2){
             if(c>0){
-                
-                
                 canFindMin = true;
             }
         }
         
         if(canFindMin){
+            min = findVertex(c,d,e);
             return min;
         }
         else{
@@ -120,7 +117,28 @@ public class PaintGraph extends JPanel{
         
     }
     
-    public double findPointX(int a,int b, int c, int d, double e, double i, boolean isPositive){
+        public String findMax(double c, double d, double e){
+        String max; //= "( "+xMin+" , "+yMin+" )";
+        boolean canFindMin = false;
+        
+        if(deg==2){
+            if(c<0){
+                canFindMin = true;
+            }
+        }
+        
+        if(canFindMin){
+            max = findVertex(c,d,e);
+            return max;
+        }
+        else{
+            return("There is no Minimum!");
+        }
+        
+    }
+    
+    
+    public double findPointX(double a,double b, double c, double d, double e, double i, boolean isPositive){
         if (!isPositive) {
             double ptX = i;
             double graphPTX = 200 - (ptX * 20);
@@ -135,7 +153,7 @@ public class PaintGraph extends JPanel{
         }
     }
     
-    public double findPointY(int a,int b, int c, int d, double e, double i, boolean isPositive, boolean isCurve){
+    public double findPointY(double a,double b, double c, double d, double e, double i, boolean isPositive, boolean isCurve){
         if (!isPositive) {
             double negi = i * -1;
             double ptY;
