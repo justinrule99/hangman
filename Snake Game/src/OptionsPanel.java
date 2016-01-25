@@ -16,6 +16,7 @@ public class OptionsPanel extends javax.swing.JFrame {
         }
         jLabel1.setText("Graph Type: "+GUIMain.grType);
         vertex = pg.findVertex(GUIMain.xSquared, GUIMain.x, GUIMain.constant);
+        System.out.println(vertex);
     }
 
     @SuppressWarnings("unchecked")
@@ -119,7 +120,7 @@ public class OptionsPanel extends javax.swing.JFrame {
 
     private void btnMinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinActionPerformed
         if(GUIMain.xSquared>0){
-            lblMin.setText(vertex); //vertex is the same as minimum
+            lblMin.setText(vertex);//vertex is the same as minimum
         }
         else{
             lblMin.setText("There is no minimum");
