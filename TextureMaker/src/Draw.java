@@ -1,39 +1,28 @@
 
 import java.awt.Color;
 import java.awt.Graphics;
+import javax.swing.JColorChooser;
 
-public class Game extends javax.swing.JFrame {
+public class Draw extends javax.swing.JFrame {
 
     int timePressedWS = 0;
     int timePressedAD = 0;
     int[] currentPosition = {0,0};
-    int[] dotLocation = {0,0};
     
-    public Game() {
+    public Draw() {
         initComponents();
-        pnlMain.setBackground(Color.RED);
-        dotLocation[0] = (int) (Math.random() * 300);
-        dotLocation[1] = (int) (Math.random() * 300);
-        System.out.println(dotLocation[0]+" , "+dotLocation[1]);
-        //pnlDot.setLayout(null);
-        //pnlDot.setLocation(dotLocation[0], dotLocation[1]);
     }
-    
-    @Override
-    public void paint(Graphics g){
-        g.setColor(Color.RED);
-        g.fillRect(0,0,20,20);
-        
-    } 
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlMain = new javax.swing.JPanel();
+        pnlCursor = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        btnChgColor = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -42,23 +31,37 @@ public class Game extends javax.swing.JFrame {
             }
         });
 
-        pnlMain.setPreferredSize(new java.awt.Dimension(15, 15));
+        pnlCursor.setBackground(new java.awt.Color(153, 255, 153));
+        pnlCursor.setPreferredSize(new java.awt.Dimension(10, 10));
 
-        javax.swing.GroupLayout pnlMainLayout = new javax.swing.GroupLayout(pnlMain);
-        pnlMain.setLayout(pnlMainLayout);
-        pnlMainLayout.setHorizontalGroup(
-            pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 15, Short.MAX_VALUE)
+        javax.swing.GroupLayout pnlCursorLayout = new javax.swing.GroupLayout(pnlCursor);
+        pnlCursor.setLayout(pnlCursorLayout);
+        pnlCursorLayout.setHorizontalGroup(
+            pnlCursorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
         );
-        pnlMainLayout.setVerticalGroup(
-            pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 15, Short.MAX_VALUE)
+        pnlCursorLayout.setVerticalGroup(
+            pnlCursorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
         );
 
         jMenu1.setText("File");
+
+        jMenu4.setText("Save");
+        jMenu1.add(jMenu4);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
+
+        btnChgColor.setText("Change Color");
+        btnChgColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChgColorActionPerformed(evt);
+            }
+        });
+        jMenu2.add(btnChgColor);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -69,46 +72,60 @@ public class Game extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(477, Short.MAX_VALUE))
+                .addComponent(pnlCursor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(580, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(454, Short.MAX_VALUE))
+                .addComponent(pnlCursor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(458, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnChgColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChgColorActionPerformed
+        Color c=JColorChooser.showDialog(this,"Choose a color",Color.WHITE);
+        System.out.println(c);
+        pnlCursor.setBackground(c);
+    }//GEN-LAST:event_btnChgColorActionPerformed
+
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+       
         int pressed = evt.getKeyCode();
         
         System.out.println(pressed);
         if(pressed == 87){
             timePressedWS--;
             currentPosition[1] = timePressedWS*5;
-            pnlMain.setLocation(currentPosition[0],currentPosition[1]);
+            pnlCursor.setLocation(currentPosition[0],currentPosition[1]);
         }
         if(pressed == 83){
             timePressedWS++;
             currentPosition[1] = timePressedWS*5;
-            pnlMain.setLocation(currentPosition[0],currentPosition[1]);
+            pnlCursor.setLocation(currentPosition[0],currentPosition[1]);
         }
         if(pressed == 65){
             timePressedAD--;
             currentPosition[0] = timePressedAD*5;
-            pnlMain.setLocation(currentPosition[0],currentPosition[1]);
+            pnlCursor.setLocation(currentPosition[0],currentPosition[1]);
         }
         if(pressed == 68){
             timePressedAD++;
             currentPosition[0] = timePressedAD*5;
-            pnlMain.setLocation(currentPosition[0],currentPosition[1]);
+            pnlCursor.setLocation(currentPosition[0],currentPosition[1]);
         }
     }//GEN-LAST:event_formKeyPressed
 
+    @Override
+    public void paint(Graphics g){
+        g.setColor(Color.RED);
+        g.fillRect(0,0,20,20);
+        
+    }  
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -123,28 +140,30 @@ public class Game extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Game.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Draw.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Game.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Draw.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Game.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Draw.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Game.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Draw.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Game().setVisible(true);
+                new Draw().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem btnChgColor;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel pnlMain;
+    private javax.swing.JPanel pnlCursor;
     // End of variables declaration//GEN-END:variables
 }
