@@ -21,8 +21,8 @@ public class Game extends javax.swing.JFrame {
     
     @Override
     public void paint(Graphics g){
-        g.setColor(Color.RED);
-        g.fillRect(0,0,20,20);
+        g.setColor(Color.GREEN);
+        g.fillRect(50,50,20,20);
         
     } 
     
@@ -89,22 +89,22 @@ public class Game extends javax.swing.JFrame {
         System.out.println(pressed);
         if(pressed == 87){
             timePressedWS--;
-            currentPosition[1] = timePressedWS*5;
+            currentPosition[1] = timePressedWS*10;
             pnlMain.setLocation(currentPosition[0],currentPosition[1]);
         }
         if(pressed == 83){
             timePressedWS++;
-            currentPosition[1] = timePressedWS*5;
+            currentPosition[1] = timePressedWS*10;
             pnlMain.setLocation(currentPosition[0],currentPosition[1]);
         }
         if(pressed == 65){
             timePressedAD--;
-            currentPosition[0] = timePressedAD*5;
+            currentPosition[0] = timePressedAD*10;
             pnlMain.setLocation(currentPosition[0],currentPosition[1]);
         }
         if(pressed == 68){
             timePressedAD++;
-            currentPosition[0] = timePressedAD*5;
+            currentPosition[0] = timePressedAD*10;
             pnlMain.setLocation(currentPosition[0],currentPosition[1]);
         }
     }//GEN-LAST:event_formKeyPressed

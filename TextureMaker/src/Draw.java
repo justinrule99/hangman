@@ -5,8 +5,8 @@ import javax.swing.JColorChooser;
 
 public class Draw extends javax.swing.JFrame {
 
-    int timePressedWS = 0;
-    int timePressedAD = 0;
+    int timePressedWS = 1;
+    int timePressedAD = 1;
     int[] currentPosition = {0,0};
     
     public Draw() {
@@ -32,7 +32,6 @@ public class Draw extends javax.swing.JFrame {
         });
 
         pnlCursor.setBackground(new java.awt.Color(153, 255, 153));
-        pnlCursor.setPreferredSize(new java.awt.Dimension(10, 10));
 
         javax.swing.GroupLayout pnlCursorLayout = new javax.swing.GroupLayout(pnlCursor);
         pnlCursor.setLayout(pnlCursorLayout);
@@ -71,16 +70,16 @@ public class Draw extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(172, 172, 172)
                 .addComponent(pnlCursor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(580, Short.MAX_VALUE))
+                .addContainerGap(418, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(268, Short.MAX_VALUE)
                 .addComponent(pnlCursor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(458, Short.MAX_VALUE))
+                .addGap(201, 201, 201))
         );
 
         pack();
@@ -118,13 +117,13 @@ public class Draw extends javax.swing.JFrame {
             pnlCursor.setLocation(currentPosition[0],currentPosition[1]);
         }
     }//GEN-LAST:event_formKeyPressed
-
+    /*
     @Override
     public void paint(Graphics g){
         g.setColor(Color.RED);
-        g.fillRect(0,0,20,20);
+        g.fillRect(100,100,2,2);
         
-    }  
+    }  */
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
