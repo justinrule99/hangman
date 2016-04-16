@@ -1,4 +1,3 @@
-console.log("did i do this right");
 
 function onSignUp(){
 	console.log("you signed up");
@@ -9,3 +8,14 @@ function onSignUp(){
 function onLogIn(){
 	console.log("you logged in");
 }
+
+
+//JQUERY HERE 
+$(function(){
+
+	$("#closesection").on("click",function(){
+			console.log("you clicked it");
+			$(".profiles").slideToggle(500);
+			
+	});
+});
