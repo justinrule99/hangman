@@ -14,7 +14,12 @@
 	font-size: 20px;
 }
 
-
+.formlinks{
+	color: blue;
+}
+.formlinks:hover{
+	color:#ee7600;
+}
 
 
 /* Basic */

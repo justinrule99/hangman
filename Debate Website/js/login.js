@@ -16,6 +16,5 @@ $(function(){
 	$("#closesection").on("click",function(){
 			console.log("you clicked it");
 			$(".profiles").slideToggle(500);
-			
 	});
 });
