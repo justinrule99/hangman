@@ -25,7 +25,7 @@ public class Connect4Coded {
         
         
         panel.setLayout(new GridLayout(1,8,50,50));
-        JButton btn = new JButton("hi");
+        JButton btn;
         for(int i=1;i<9;i++){
             String stI = Integer.toString(i);
             btn = new JButton(stI);
