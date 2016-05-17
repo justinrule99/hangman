@@ -1,5 +1,6 @@
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 public class GolfTest extends javax.swing.JFrame {
@@ -10,23 +11,22 @@ public class GolfTest extends javax.swing.JFrame {
     
     public GolfTest() {
         initComponents();
+        
+        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl = new javax.swing.JTable();
         btnEnter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Names", "1", "2", "3", "4", "5", "6", "7", "8", "9"
@@ -40,7 +40,7 @@ public class GolfTest extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable1);
+        jScrollPane3.setViewportView(tbl);
 
         btnEnter.setText("Enter Scores");
         btnEnter.addActionListener(new java.awt.event.ActionListener() {
@@ -77,21 +77,21 @@ public class GolfTest extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
-        for (int i = 0; i < 4; i++) {
-            int realI = i++;
-            names[i] = JOptionPane.showInputDialog("Enter player "+realI+"'s name",null);
-            System.out.println(names[i]);
+        for (int i = 1; i < 5; i++) {
+            names[i-1] = JOptionPane.showInputDialog("Enter player "+i+"'s name",null);
+            System.out.println(names[i-1]);
         }
         
         
-        for (int i = 0; i < 4; i++) {
+        for (int i = 1; i < 5; i++) {
            
-            int realI = i++;
-            for (int j = 0; j < 9; j++) {
-                int realJ = j++;
-                strScores[i][j] = JOptionPane.showInputDialog("Enter the score for player"+realI+", hole "+realJ,null);
-                scores[i][j] = Integer.parseInt(strScores[i][j]);
-                System.out.println(scores[i][j]);
+            for (int j = 1; j < 10; j++) {
+                
+                strScores[i-1][j-1] = JOptionPane.showInputDialog("Enter the score for player "+i+", hole "+j,null);
+                scores[i-1][j-1] = Integer.parseInt(strScores[i-1][j-1]);
+                System.out.println(scores[i-1][j-1]);
+                DefaultTableModel model = (DefaultTableModel) tbl.getModel();
+                model.addRow(new Integer[]{scores[i-1][j-1]});
             }
         }
     }//GEN-LAST:event_btnEnterActionPerformed
@@ -131,6 +131,6 @@ public class GolfTest extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEnter;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbl;
     // End of variables declaration//GEN-END:variables
 }
