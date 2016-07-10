@@ -2,21 +2,24 @@ package sample;
 
 import javafx.application.Application;
 
+import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application {
     
-
+    TopMenu tm = new TopMenu();
     
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Pane pane = new Pane();
-        FlowPane flPane = new FlowPane();
+        AnchorPane pane = new AnchorPane();
+        Board b = new Board();
         primaryStage.setTitle("Main Menu");
 
         pane.setId("menu");
@@ -25,17 +28,23 @@ public class Main extends Application {
         btn.setLayoutY(50);
         btn.setOnAction(e ->{
             System.out.println(e);
-            Board b = new Board();
+
             b.showBoard(primaryStage);
         });
 
+
+        MenuBar mb = tm.initMenu(1, primaryStage, b);
+
+
+        pane.getChildren().add(mb);
+        AnchorPane.setTopAnchor(mb, 0.0);
 
 
 
         Scene scene = new Scene(pane, 800,500);
         scene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
         pane.getChildren().add(btn);
-        pane.getChildren().add(flPane);
+
 
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("x.png")));
         primaryStage.setScene(scene);

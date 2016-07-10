@@ -3,17 +3,14 @@ package sample;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.util.Random;
+
 
 public class Board {
 
@@ -24,7 +21,6 @@ public class Board {
     int boxCol, boxRow, xPlayNum;
     int numXonBoard;
 
-    BorderPane layout;
 
     double x, y;
     boolean xTurn = true;
@@ -34,12 +30,12 @@ public class Board {
     boolean oIn[][] = new boolean[3][3];
     boolean xCent;
     boolean xWin = false;
-    ImageView imageView, imgAI;
+    ImageView imageView, imgAI, imgReset;
     Random rnd = new Random();
+    TopMenu tm = new TopMenu();
 
 
     public Board(){
-
 
     }
 
@@ -53,19 +49,22 @@ public class Board {
         grid.setId("grid");
         xPlayNum = 0;
 
-        Menu optionsMenu = new Menu("Options");
-        optionsMenu.getItems().add(new MenuItem("New Game"));
-        optionsMenu.getItems().add(new MenuItem("Change Colors"));
-        optionsMenu.getItems().add(new MenuItem("Stats"));
-        optionsMenu.getItems().add(new MenuItem("Exit"));
 
-        MenuBar bar = new MenuBar();
-        bar.getMenus().add(optionsMenu);
-        bar.setLayoutX(0);
-        bar.setLayoutY(0);
 
-        layout = new BorderPane();
-        layout.setTop(bar);
+        grid.getChildren().add(tm.initMenu(2, stage, this));
+
+
+
+        Button btn2 = new Button("Click");
+        btn2.setOnAction(e ->{
+            resetBoard();
+            System.out.println("reset");
+        });
+        grid.setPrefSize(50,50);
+        grid.add(btn2, 0,0);
+
+
+
 
         grid.setOnMouseClicked(e ->{
             x = e.getX();
@@ -75,7 +74,7 @@ public class Board {
             if(numXonBoard<5){
                 if(!oIn[click[0]][click[1]] && !xIn[click[0]][click[1]] && !xWin){
 
-                    Image img = getImage();
+                    Image img = getImage(false);
                     imageView = new ImageView();
                     imageView.setImage(img);
                     imageView.setFitWidth(150);
@@ -94,8 +93,6 @@ public class Board {
                         if(numXonBoard<5 && !checkWin().equals("x")){
                             runAI();
                         }
-                        else
-                            System.out.println("nah fam");
 
                     }
 
@@ -116,9 +113,6 @@ public class Board {
                     System.out.println("cant do it");
                 }
             }
-            else {
-                System.out.println("done He");
-            }
 
         });
 
@@ -129,6 +123,7 @@ public class Board {
             button[i].setVisible(false);
             grid.add(button[i], colNum, rowNum);
         }
+
 
         Scene sc = new Scene(grid, 600,600);
         sc.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
@@ -146,12 +141,21 @@ public class Board {
         y = 0;
         xCent = false;
         numXonBoard = 0;
+        Image img = getImage(true);
+        imgReset = new ImageView();
+        imgReset.setImage(img);
+        imgReset.setFitHeight(150);
+        imgReset.setFitWidth(150);
+
         for (int i = 0; i < 3; i++) {
+
+
             for (int j = 0; j < 3; j++) {
                 isX[i][j] = false;
                 xIn[i][j] = false;
                 isO[i][j] = false;
                 oIn[i][j] = false;
+                grid.add(imgReset,i,j);
             }
         }
     }
@@ -160,7 +164,7 @@ public class Board {
         long startTime = System.currentTimeMillis();
         System.out.println("the ai chose ");
 
-        Image imgO = getImage();
+        Image imgO = getImage(false);
         imgAI = new ImageView();
         imgAI.setImage(imgO);
         imgAI.setFitWidth(150);
@@ -170,14 +174,10 @@ public class Board {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if(isX[i][j]){
-                    //numXonBoard++;
                     xIn[i][j] = true;
-
                 }
                 if(isO[i][j]){
-                    //numOonBoard++;
                     oIn[i][j] = true;
-
                 }
             }
         }
@@ -218,6 +218,7 @@ public class Board {
 
             if(!blockX()){
                 randPos();
+
             }
 
         }
@@ -225,6 +226,7 @@ public class Board {
         if(numXonBoard>2){
             if(!blockX()){
                 randPos();
+
             }
         }
         changeTurn();
@@ -481,12 +483,15 @@ public class Board {
         return xTurn;
     }
 
-    public Image getImage(){
+    public Image getImage(boolean isReset){
         Image image;
         if(xTurn){
             image = new Image(Main.class.getResourceAsStream("x.png"));
         }
-        else {
+        else if(isReset) {
+            image = new Image(Main.class.getResourceAsStream("white.png"));
+        }
+        else{
             image = new Image(Main.class.getResourceAsStream("o.png"));
         }
         return image;
@@ -507,6 +512,8 @@ public class Board {
             rand2 = randInt(0,2);
         }
         grid.add(imgAI, rand1,rand2);
+        isO[rand1][rand2] = true;
+        oIn[rand1][rand2] = true;
     }
 
 }
