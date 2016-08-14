@@ -50,21 +50,7 @@ public class Board {
         xPlayNum = 0;
 
 
-
         grid.getChildren().add(tm.initMenu(2, stage, this));
-
-
-
-        Button btn2 = new Button("Click");
-        btn2.setOnAction(e ->{
-            resetBoard();
-            System.out.println("reset");
-        });
-        grid.setPrefSize(50,50);
-        grid.add(btn2, 0,0);
-
-
-
 
         grid.setOnMouseClicked(e ->{
             x = e.getX();
@@ -141,21 +127,21 @@ public class Board {
         y = 0;
         xCent = false;
         numXonBoard = 0;
-        Image img = getImage(true);
-        imgReset = new ImageView();
-        imgReset.setImage(img);
-        imgReset.setFitHeight(150);
-        imgReset.setFitWidth(150);
+
+        grid.getChildren().remove(imgAI);
+        grid.getChildren().remove(imageView);
 
         for (int i = 0; i < 3; i++) {
 
 
             for (int j = 0; j < 3; j++) {
+
+
                 isX[i][j] = false;
                 xIn[i][j] = false;
                 isO[i][j] = false;
                 oIn[i][j] = false;
-                grid.add(imgReset,i,j);
+
             }
         }
     }

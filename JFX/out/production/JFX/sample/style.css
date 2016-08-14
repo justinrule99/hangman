@@ -7,6 +7,10 @@
 
 }
 
+#bar{
+    -fx-background-color: #f2ba44;
+}
+
 .button {
    -fx-background-color: 
         linear-gradient(#ffd65b, #e68400),

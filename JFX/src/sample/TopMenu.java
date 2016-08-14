@@ -6,6 +6,7 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -59,6 +60,8 @@ public class TopMenu {
 
         MenuBar bar = new MenuBar();
         bar.getMenus().add(optionsMenu);
+        bar.setId("bar");
+        //bar.prefWidthProperty().bind(primaryStage.widthProperty());
 
         if(version==2){
             bar.setTranslateX(-20);
